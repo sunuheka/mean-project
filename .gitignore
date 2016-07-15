@@ -1,2 +1,5 @@
 bower_components
 node_modules
+public/javascripts/main.map
+public/javascripts/main.js
+public/stylesheets/main.css
