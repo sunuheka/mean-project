@@ -1,21 +1,43 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var neuter = require('gulp-neuter');
+var nodemon = require('gulp-nodemon');
+var livereload = require('gulp-livereload')
 
 gulp.task('sass', function () {
   return gulp.src('./angular/scss/**/*.scss')
     .pipe(sass({
     	includePaths: ['bower_components/foundation/scss']
     }).on('error', sass.logError))
-    .pipe(gulp.dest('./public/stylesheets'));
+    .pipe(gulp.dest('./public/stylesheets'))
+    .pipe(livereload());
 });
  
 gulp.task('sass:watch', function () {
-  gulp.watch('./angular/scss/**/*.scss', ['sass']);
+  livereload.listen({ basePath: 'public' });
+  gulp.watch(['./angular/scss/**/*.scss'], ['sass']);
+});
+
+gulp.task('js:watch', function () {
+  livereload.listen({ basePath: 'public' });
+  gulp.watch(['./angular/js/**/*.js'], [ 'js']);
 });
 
 gulp.task('js', function() {
 	return gulp.src('./angular/js/main.js')
 		.pipe(neuter('main.js', 'main.map', {}))
-		.pipe(gulp.dest('./public/javascripts'));
+		.pipe(gulp.dest('./public/javascripts'))
+		.pipe(livereload());
 });
+
+gulp.task('server', function(){
+	nodemon({
+		script: './bin/www', 
+		watch: ['routes', 'models', 'app.js'] 
+	})
+    .on('restart', function () {
+      console.log('restarted!')
+    })
+});
+
+gulp.task('default', ['sass', 'js', 'sass:watch', 'js:watch', 'server'])
