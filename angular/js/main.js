@@ -9,7 +9,11 @@ angular.module('InventoryApp', ['ngRoute'])
         when('/users', {
           template: '<user-list></user-list>'
         }).
+        when('/users/add', {
+          template: '<user-add></user-add>'
+        }).
         otherwise('/users');
 }]);
 
-require('./userlistcomponent');
+require('./user/userlistcomponent');
+require('./user/useraddcomponent');

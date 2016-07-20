@@ -23,12 +23,21 @@ gulp.task('js:watch', function () {
   gulp.watch(['./angular/js/**/*.js'], [ 'js']);
 });
 
+gulp.task('template:watch', function () {
+  livereload.listen({ basePath: 'public' });
+  gulp.watch(['./public/templates/**/*.html'], ['reload']);
+});
+
 gulp.task('js', function() {
 	return gulp.src('./angular/js/main.js')
 		.pipe(neuter('main.js', 'main.map', {}))
 		.pipe(gulp.dest('./public/javascripts'))
 		.pipe(livereload());
 });
+
+gulp.task('reload', function(){
+  livereload();
+})
 
 gulp.task('server', function(){
 	nodemon({
@@ -40,4 +49,4 @@ gulp.task('server', function(){
     })
 });
 
-gulp.task('default', ['sass', 'js', 'sass:watch', 'js:watch', 'server'])
+gulp.task('default', ['sass', 'js', 'sass:watch', 'js:watch','template:watch', 'server'])

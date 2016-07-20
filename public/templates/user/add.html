@@ -1,0 +1,59 @@
+<form>
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Name
+        <input type="text" ng-model="user.name" />
+      </label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-4 columns">
+      <label>Username
+        <input type="text" ng-model="user.username" />
+      </label>
+    </div>
+    <div class="large-4 columns">
+      <label>Password
+        <input type="text" ng-model="user.password"/>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Address
+        <input type="text" ng-model="user.location" />
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Age
+        <input type="number" ng-model="user.age"/>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <label>Website
+        <input type="text" ng-model="user.website" />
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-6 columns">
+      <label>Admin</label>
+      <input type="radio" name="admin" ng-checked="user.admin" id="yes"><label for="yes">Yes</label>
+      <input type="radio" name="admin" ng-checked="user.admin" id="no"><label for="no">No</label>
+    </div>
+  </div>
+
+  <div>
+  	<div class="large-12 columns">
+  		<button ng-click="saveUser()">Add User</button>
+  	</div>
+  </div>
+</form>

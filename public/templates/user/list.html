@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="columns medium-12">
+    <a href="#!/users/add">Add new user</a>
+  </div>
+</div>
+<div class="row">
+  <div class="columns medium-12">
+    <table>
+  <thead>
+    <tr>
+      <th width="200">Name</th>
+      <th>Username</th>
+      <th width="150">Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.location }}</td>
+    </tr>
+    
+  </tbody>
+</table>
+  </div>
+</div>

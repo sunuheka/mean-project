@@ -12,4 +12,29 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.post('/', function(req, res){
+	var user = new User({
+		name: req.body.name,
+		username: req.body.username,
+		password: req.body.password,
+		admin: req.body.admin,
+		location: req.body.location,
+		meta: {
+			website: req.body.website,
+			age: req.body.age
+		}
+	});
+
+	user.save(function(err){
+		if (err) {
+			res.json({
+				status: 'error',
+				message: err.errmsg
+			})
+		}
+
+		res.json({status:'success'});
+	});
+});
+
 module.exports = router;

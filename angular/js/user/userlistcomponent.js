@@ -1,10 +1,10 @@
 angular.module('InventoryApp')
 .component('userList', {
-	template: '<ul><li ng-repeat="user in users">{{ user.username }}</li></ul>',
+	templateUrl: '/templates/user/list.html',
 	controller: [
 	'$scope',
 	'$http',
-	function UserController($scope, $http) {
+	function UserListController($scope, $http) {
 
 		$http.get('/users').then(function(response){
 			$scope.users = response.data;
